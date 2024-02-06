@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Be My Valentine</title>
+
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+		<link
+			href="https://fonts.googleapis.com/css2?family=Geologica&display=swap"
+			rel="stylesheet"
+		/>
+
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body
+		class="bg-slate-900 text-white font-[Geologica] p-4 h-screen flex justify-center items-center"
+	>
+		<div class="flex flex-col gap-4 items-center">
+			<div>
+				<img
+					src="https://media.tenor.com/6eIkl-Qc62EAAAAj/cute.gif"
+					alt=""
+				/>
+			</div>
+
+			<h2 id="ask" class="text-2xl text-center">
+				Will you be my Valentine??
+			</h2>
+
+			<div
+				id="btn-ctn"
+				class="flex flex-wrap gap-2 justify-center items-center"
+			>
+				<button
+					id="select"
+					type="button"
+					class="text-white bg-green-600 hover:bg-green-700 font-medium rounded-lg px-4 py-1"
+				>
+					YES
+				</button>
+
+				<button
+					id="reject"
+					type="button"
+					class="text-white bg-red-600 hover:bg-red-700 font-medium rounded-lg text-lg px-4 py-1"
+				>
+					No
+				</button>
+			</div>
+
+			<div id="send" class="hidden text-green-500">
+				<a class="underline" href="whatsapp://send?text=OK yay!!! 🫶"
+					>Let him cook</a
+				>
+			</div>
+		</div>
+
+		<script>
+			let prompt = [
+				"No",
+				"Are you sure?",
+				"Really sure!",
+				"Think again!",
+				"Last chance!",
+				"Surely not?",
+				"You might regret this!",
+				"Give it another thought!",
+				"Are you absolutely certain?",
+				"This could be a mistake!",
+				"Have a heart!",
+				"Don't be so cold!",
+				"Change of heart?",
+				"Wouldn't you reconsider?",
+				"Is that you final answer?",
+				"You're breaking my heart ;(",
+			];
+
+			let index = 0;
+			let scale = 1.125;
+
+			let ask = document.querySelector("#ask");
+			let img = document.querySelector("img");
+			let buttonCtn = document.querySelector("#btn-ctn");
+
+			let send = document.querySelector("#send");
+
+			let select = document.querySelector("#select");
+			select.style.fontSize = `${scale}rem`;
+
+			let reject = document.querySelector("#reject");
+			reject.textContent = `${prompt[index]}`;
+
+			select.addEventListener("click", function () {
+				ask.textContent = `OK yay!!! 🫶`;
+				img.src = `https://media.tenor.com/TEC6z0acIbUAAAAj/cute-bears-love.gif`;
+				buttonCtn.style.display = `none`;
+
+				setTimeout(() => {
+					send.style.display = "block";
+				}, 3000);
+			});
+
+			reject.addEventListener("click", function () {
+				if (index === prompt.length - 1) {
+					reject.style.display = "none";
+					index = 0;
+				}
+
+				index++;
+				scale += 0.4;
+
+				reject.textContent = `${prompt[index]}`;
+				select.style.fontSize = `${scale}rem`;
+			});
+		</script>
+	</body>
+</html>
